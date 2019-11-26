@@ -20,8 +20,8 @@ endif
 start:
 
 
-fetch:
-	make -C scripts/git-repo-mgr init
+sync:
+	make -C scripts/git-repo-mgr init sync
 
 
 # ####################################

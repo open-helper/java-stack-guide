@@ -4,8 +4,9 @@ log/
 backup/
 dist/
 
-# repo
+# repo(auto gen)
 src/repo
+src/topics
 
 # Compiled class file
 *.class
