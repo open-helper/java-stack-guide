@@ -4,6 +4,9 @@ log/
 backup/
 dist/
 
+# repo
+src/repo
+
 # Compiled class file
 *.class
 

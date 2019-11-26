@@ -20,6 +20,9 @@ endif
 start:
 
 
+fetch:
+	make -C scripts/git-repo-mgr init
+
 
 # ####################################
 # Git AREA
