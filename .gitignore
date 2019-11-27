@@ -8,6 +8,9 @@ dist/
 src/repo
 src/topics
 
+# prod
+conf/env.d/*-prod.env
+
 # Compiled class file
 *.class
 
