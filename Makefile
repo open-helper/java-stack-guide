@@ -21,7 +21,10 @@ start:
 
 
 sync:
-	make -C scripts/git-repo-mgr init sync
+	make -C scripts/git-repo-mgr init sync merge
+
+merge:
+	make -C scripts/git-repo-mgr merge
 
 
 # ####################################
