@@ -14,8 +14,8 @@ build:
 install:
 	cd $(SRC_PROJ_HOME) && mvn clean install -Dmaven.test.skip=true
 
-dispatch:
-	cd $(SRC_PROJ_HOME) && find . -name "Dockerfile" -o -name "*.sql" | xargs -t tar -cf- | tar -xvf- -C ../../../apps/docker-compose/log4j-pig/stub
+# dispatch:
+# 	cd $(SRC_PROJ_HOME) && find . -name "Dockerfile" -o -name "*.sql" | xargs -t tar -cf- | tar -xvf- -C ../../../apps/docker-compose/log4j-pig/stub
 
 
 # ####################################

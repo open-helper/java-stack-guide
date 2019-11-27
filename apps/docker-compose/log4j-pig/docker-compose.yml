@@ -1,0 +1,126 @@
+---
+# Name: log4j-pig
+# Version: master 
+# FileVersion: 20191127
+# Ref: 
+#   - https://gitee.com/log4j/pig
+
+# Dockerfile
+# 
+
+
+# ####################################
+# 环境变量
+# ####################################
+
+
+# ####################################
+# 文件映射
+# ####################################
+
+
+version: '2'
+services:
+
+  pig-mysql:
+    restart: always
+    build:
+      context: ${BUILD_CONTEXT_DIR}
+      dockerfile: ./db/Dockerfile
+    image: ${PIG_MYSQL_IMG_TAG}
+    hostname: pig-mysql
+    container_name: pig-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ../../../log/log4j-pig/mysql:/var/log/mysql
+    ports:
+      - 3306:3306
+
+  pig-redis:
+    restart: always
+    image: redis:5.0
+    hostname: pig-redis
+    container_name: pig-redis
+    ports:
+      - 6379:6379
+
+  pig-eureka:
+    restart: always
+    build:
+      context: ${BUILD_CONTEXT_DIR}
+      dockerfile: ./pig-eureka/Dockerfile
+    image: ${PIG_EUREKA_IMG_TAG}
+    hostname: pig-eureka
+    container_name: pig-eureka
+    ports:
+      - 8761:8761
+
+  pig-config:
+    restart: always
+    build:
+      context: ${BUILD_CONTEXT_DIR}
+      dockerfile: ./pig-config/Dockerfile
+    image: ${PIG_CONFIG_IMG_TAG}
+    hostname: pig-config
+    container_name: pig-config
+
+  pig-gateway:
+    restart: always
+    build:
+      context: ${BUILD_CONTEXT_DIR}
+      dockerfile: ./pig-gateway/Dockerfile
+    image: ${PIG_GATEWAY_IMG_TAG}
+    hostname: pig-gateway
+    container_name: pig-gateway
+    ports:
+      - 9999:9999
+
+  pig-auth:
+    restart: always
+    build:
+      context: ${BUILD_CONTEXT_DIR}
+      dockerfile: ./pig-auth/Dockerfile
+    image: ${PIG_AUTH_IMG_TAG}
+    hostname: pig-auth
+    container_name: pig-auth
+
+  pig-upms:
+    restart: always
+    build:
+      context: ${BUILD_CONTEXT_DIR}
+      dockerfile: ./pig-upms/pig-upms-biz/Dockerfile
+    image: ${PIG_UPMS_IMG_TAG}
+    hostname: pig-upms
+    container_name: pig-upms
+
+  pig-monitor:
+    restart: always
+    build:
+      context: ${BUILD_CONTEXT_DIR}
+      dockerfile: ./pig-visual/pig-monitor/Dockerfile
+    ports:
+      - 5001:5001
+    container_name: pig-monitor
+    hostname: pig-monitor
+    image: ${PIG_MONITOR_IMG_TAG}
+
+  pig-codegen:
+    restart: always
+    build:
+      context: ${BUILD_CONTEXT_DIR}
+      dockerfile: ./pig-visual/pig-codegen/Dockerfile
+    container_name: pig-codegen
+    hostname: pig-codegen
+    image: ${PIG_CODEGEN_IMG_TAG}
+
+  pig-zipkin:
+    restart: always
+    build:
+      context: ${BUILD_CONTEXT_DIR}
+      dockerfile: ./pig-visual/pig-zipkin/Dockerfile
+    image: ${PIG_ZIPKIN_IMG_TAG}
+    container_name: pig-zipkin
+    ports:
+      - 5002:5002

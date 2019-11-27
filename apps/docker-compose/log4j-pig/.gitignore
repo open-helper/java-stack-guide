@@ -1,0 +1,14 @@
+# 数据目录
+
+# DATA-DIR-BEGIN
+data
+data/mysql
+data/redis
+
+../../../log/log4j-pig/mysql
+
+# DATA-DIR-END
+
+
+# 生产配置
+*.prod.yml
