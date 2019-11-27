@@ -14,11 +14,13 @@ Java开源代码**统一托管**，**落地实践**心路历程
 
 ## 前置约定
 **源码统一管理 URL -> URI标准化**
+
 |Key|Value|Memo|
 |:--|--|--|
 |URL|https://github.com/open-helper/java-stack-guide||
 |URI|**open-helper/java-stack-guide**|topic.lst|
 |local_uri|**open-helper-java-stack-guide**||
+
 > 转换规则: "/."转为"-", 大写转小写
 > `fname=$(echo $x | tr '/.' '-' | tr A-Z a-z);`
 
@@ -29,13 +31,14 @@ Java开源代码**统一托管**，**落地实践**心路历程
 
 
 ## Quick Started
-**场景1** 快速把某个工程运行起来，看看效果
+**场景1** local_uri存在 快速运行起来，看看效果
 ```bash
 # 基于docker 启动/停止/状态/启动并查看状态
 make -C apps/local_uri/docker-compose start
 make -C apps/local_uri/docker-compose stop
 make -C apps/local_uri/docker-compose status
 make -C apps/local_uri/docker-compose start status
+
 # 基于k8s 启动/停止/状态/启动并查看状态
 make -C apps/local_uri/k8s start
 make -C apps/local_uri/k8s stop
