@@ -21,7 +21,7 @@ stop:
 config:
 	$(DC) config
 sh:
-	$(DK_EXEC) pig-mysql bash
+	$(DK_EXEC) pig-ui bash
 
 
 # ####################################

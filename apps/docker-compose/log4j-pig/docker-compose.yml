@@ -100,27 +100,61 @@ services:
     build:
       context: ${BUILD_CONTEXT_DIR}
       dockerfile: ./pig-visual/pig-monitor/Dockerfile
+    image: ${PIG_MONITOR_IMG_TAG}
+    hostname: pig-monitor
+    container_name: pig-monitor
     ports:
       - 5001:5001
-    container_name: pig-monitor
-    hostname: pig-monitor
-    image: ${PIG_MONITOR_IMG_TAG}
 
   pig-codegen:
     restart: always
     build:
       context: ${BUILD_CONTEXT_DIR}
       dockerfile: ./pig-visual/pig-codegen/Dockerfile
-    container_name: pig-codegen
-    hostname: pig-codegen
     image: ${PIG_CODEGEN_IMG_TAG}
+    hostname: pig-codegen
+    container_name: pig-codegen
 
-  pig-zipkin:
+  pig-ui:
+    privileged: true
+    command: /usr/sbin/init
     restart: always
-    build:
-      context: ${BUILD_CONTEXT_DIR}
-      dockerfile: ./pig-visual/pig-zipkin/Dockerfile
-    image: ${PIG_ZIPKIN_IMG_TAG}
-    container_name: pig-zipkin
+    image: ${PIG_UI_IMG_TAG}
+    hostname: pig-ui
+    container_name: pig-ui
+    depends_on:
+      - pig-mysql
+      - pig-redis
+      - pig-eureka
+      - pig-config
+      - pig-gateway
+      - pig-auth
+      - pig-upms
+      - pig-monitor
+    links:
+      - pig-codegen
+
+  pig-nginx:
+    command: ${NGINX_CMD}
+    restart: always
+    image: ${NGINX_IMG}
+    hostname: pig-nginx
+    container_name: pig-nginx
     ports:
-      - 5002:5002
+      - ${INGRESS_PORT}:80
+    volumes:
+      - ./conf/nginx/:/etc/nginx/conf.d/
+    links:
+      - pig-ui
+    ulimits:
+      nproc: 655350
+
+  # pig-zipkin:
+  #   restart: always
+  #   build:
+  #     context: ${BUILD_CONTEXT_DIR}
+  #     dockerfile: ./pig-visual/pig-zipkin/Dockerfile
+  #   image: ${PIG_ZIPKIN_IMG_TAG}
+  #   container_name: pig-zipkin
+  #   ports:
+  #     - 5002:5002
