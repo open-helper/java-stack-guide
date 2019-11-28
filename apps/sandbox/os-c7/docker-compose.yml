@@ -1,0 +1,38 @@
+---
+# Name: CentOS
+# Version: 7 
+# FileVersion: 20191128
+# Ref: 
+#   - https://
+
+# Dockerfile
+# 
+
+
+# ####################################
+# 环境变量
+# ####################################
+
+
+# ####################################
+# 文件映射
+# ####################################
+
+version: '2'
+services:
+  c7-s1:
+    privileged: true
+    # command: /bin/bash
+    restart: always
+    build:
+      context: ${BUILD_CONTEXT_DIR}
+      dockerfile: ./stub/Dockerfile
+    image: ${OS_IMG_TAG}
+    hostname: c7-s1
+    container_name: c7-s1
+    volumes:
+      # - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/docker:/var/lib/docker
+      - ../../..:/project
+    ports:
+      - "52001:22"

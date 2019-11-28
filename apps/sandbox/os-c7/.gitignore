@@ -1,0 +1,15 @@
+# 数据目录
+
+# DATA-DIR-BEGIN
+data
+data/docker
+data/redis
+
+../../../log/os-c7/s1
+../../../log/os-c7/s2
+
+# DATA-DIR-END
+
+
+# 生产配置
+*.prod.yml
