@@ -12,6 +12,8 @@ DATA_SUF = $(shell date +"%Y.%m.%d.%H.%M.%S")
 
 include ./.env
 
+PROJ_NAME := $(shell basename $(CURDIR))
+
 
 # ####################################
 # Dashboard AREA
@@ -31,6 +33,11 @@ rebuild-then-start: stop init-dir
 	$(DK) images | grep -q $(OS_IMG_TAG) && $(DK) rmi $(OS_IMG_TAG) || true
 	$(DC) up --build -d
 
+rebuild_pre:
+	sudo mv data ../$(PROJ_NAME)-data
+rebuild_post:
+	sudo mv ../$(PROJ_NAME)-data data
+
 
 # ####################################
 # Init AREA
@@ -45,7 +52,7 @@ init-dir:
 	# 给集群配置文件加上读权限，否则会因用户id不同，导致配置读取不生效
 	find conf -name "*.cnf" -exec chmod +r {} \;
 	# log目录可写
-	chmod o+w ../../../log/os-c7
+	chmod o+w ../../../log/$(PROJ_NAME)
 
 
 # ####################################
