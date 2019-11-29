@@ -1,17 +1,18 @@
 # ####################################
-# Name: log4j-pig-ui
-# FileVersion: 20191129
-# TemplateVersion: 20191129
+# @file: Makefile
+# @name: log4j-pig-ui
+# @date: 2019-11-29 22:36:02
+# @tver: 20191129
 # ####################################
 
 
-DK	:= docker
-DC	:= docker-compose
+DK      := docker
+DC      := docker-compose
 DK_EXEC := docker exec -it
 
-DATA_SUF	:= $(shell date +"%Y.%m.%d.%H.%M.%S")
-DK_FILE		:= ./Dockerfile
-DK_IMG_PREFIX	:= open-helper
+DATA_SUF       := $(shell date +"%Y.%m.%d.%H.%M.%S")
+DK_FILE        := ./Dockerfile
+DK_IMG_PREFIX  := open-helper
 
 
 # ####################################

@@ -26,6 +26,13 @@ sync:
 merge:
 	make -C scripts/git-repo-mgr merge
 
+build:
+	dirs=`find src/repo -name ".open-helper"`; \
+	for x in $$dirs; do \
+		echo "$$x/Makefile"; \
+		[ -f "$$x/Makefile" ] && make build -C "$$x" || true; \
+	done;
+
 
 # ####################################
 # Git AREA
