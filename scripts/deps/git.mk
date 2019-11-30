@@ -13,7 +13,7 @@ SUB_TEMPLATE_LIST := java-templates=java ide-templates=ide
 SUB_TEMPLATE_GIT_PREFIX := git@github.com:open-guide
 SUB_TEMPLATE_LOCAL_PREFIX := templates
 
-SUB_APP_DOCKER_LIST := java-docker-compose-apps=docker-compose base-docker-compose-apps=base
+SUB_APP_DOCKER_LIST := java-docker-compose-apps=docker-compose base-docker-compose-apps=infra
 SUB_APP_DOCKER_GIT_PREFIX := git@github.com:open-docker
 SUB_APP_DOCKER_LOCAL_PREFIX := apps
 
