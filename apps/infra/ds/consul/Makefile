@@ -26,7 +26,7 @@ config:
 	$(DC) config
 
 sh:
-	$(DK_EXEC) c7-s1 bash
+	$(DK_EXEC) consul-01 bash
 bash: sh
 
 rebuild-then-start: stop init-dir
@@ -53,6 +53,11 @@ init-dir:
 	find conf -name "*.cnf" -exec chmod +r {} \;
 	# log目录可写
 	chmod o+w ../../../log/$(PROJ_NAME)
+
+download:
+	for x in `cat stub/downloads/url.lst | grep -v "^#"`; do \
+		wget -P stub/downloads $$x; \
+	done;
 
 
 # ####################################
