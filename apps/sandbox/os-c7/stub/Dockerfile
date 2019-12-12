@@ -10,11 +10,11 @@ MAINTAINER boxu@yvhai.com
 RUN date \
     && yum update -y \
     && ls -lhrt /etc/yum.repos.d/ \
-    && yum install -y vim rsync screen sysstat \
-    && yum install -y tree net-snmp-utils net-tools bind-utils iputils telnet lsof \
-    && yum install -y openssh-server openssh-clients \
     && yum install -y sudo make which \
-    && yum install -y yum-utils device-mapper-persistent-data lvm2 \
+    && yum install -y vim rsync screen sysstat unzip \
+    && yum install -y openssh-server openssh-clients \
+    && yum install -y tree net-snmp-utils net-tools bind-utils iputils telnet lsof yum-utils \
+    && yum install -y device-mapper-persistent-data lvm2 \
     && yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo \
     && yum install -y docker-ce \
     && yum clean all && rm -rf /var/cache/yum
