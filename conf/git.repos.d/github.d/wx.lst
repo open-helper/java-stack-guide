@@ -1,7 +1,6 @@
-# 各种仓库
-sonatype/docker-nexus3
+# 微信开发相关
 Wechat-Group/WxJava
 binarywang/weixin-java-miniapp-demo
 binarywang/weixin-java-mp-demo-springboot
 binarywang/weixin-java-pay-demo
-binarywang/java-testdata-generator
+
